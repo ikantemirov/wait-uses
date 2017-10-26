@@ -35,7 +35,7 @@ public class VKmessagingTest {
         driver.findElement(By.xpath("//button[contains(@class,'header-icon_search')]")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='im_history_search']")));
         driver.findElement(By.xpath("//input[@id='im_history_search']")).sendKeys(randomMsg +Keys.ENTER);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'im_msg_text')]")));
-        //Assert.assertEquals("False", randomMsg, driver.findElement(By.xpath("//div[contains(@class,'im_msg_text')]")).getText());
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(node(), '" + randomMsg +"') and contains(@class, 'text wall_module')]")));
+        Assert.assertEquals("False", randomMsg, driver.findElement(By.xpath("//div[contains(node(), '" + randomMsg +"') and contains(@class, 'text wall_module')]")).getText());
     }
 }
