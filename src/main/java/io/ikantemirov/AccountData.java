@@ -2,8 +2,10 @@ package io.ikantemirov;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources("classpath:AccountData.properties")
+@Config.Sources("classpath:account.properties")
 public interface AccountData extends Config {
-    String login();
+    @Key("username")
+    String username();
+    @Key("password")
     String password();
 }

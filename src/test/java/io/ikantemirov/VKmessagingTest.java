@@ -20,10 +20,10 @@ public class VKmessagingTest {
     @Test
     public void vkWriteMessageToEroshenko() {
         driver.get("http://vk.com");
-        driver.findElement(By.id("index_email")).sendKeys(accountData.login() + Keys.TAB + accountData.password() + Keys.ENTER);
+        driver.findElement(By.id("index_email")).sendKeys(accountData.username() + Keys.TAB + accountData.password() + Keys.ENTER);
         WebDriverWait wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//[@id='l_msg']")));
-        driver.findElement(By.xpath("//[@id='l_msg']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='l_msg']")));
+        driver.findElement(By.xpath("//*[@id='l_msg']")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='im_dialogs_search']")));
         driver.findElement(By.xpath("//input[@id='im_dialogs_search']")).sendKeys("Артем Ерошенко");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[@data-list-id='356736cr']")));
@@ -36,5 +36,6 @@ public class VKmessagingTest {
         driver.findElement(By.xpath("//input[@id='im_history_search']")).sendKeys(randomMsg +Keys.ENTER);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(node(), '" + randomMsg +"') and contains(@class, 'text wall_module')]")));
         Assert.assertEquals("False", randomMsg, driver.findElement(By.xpath("//div[contains(node(), '" + randomMsg +"') and contains(@class, 'text wall_module')]")).getText());
+        driver.close();
     }
 }
