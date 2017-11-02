@@ -15,16 +15,15 @@ public class VKmessagingTest {
 
     public WebDriver driver = new ChromeDriver();
     String randomMsg = "Hello from WebDriver " + RandomStringUtils.randomAlphanumeric(20);
-    AccountData accountData = ConfigFactory.create(AccountData.class);
-
+    AccountData accountData = ConfigFactory.create(AccountData.class, System.getProperties());
 
     @Test
     public void vkWriteMessageToEroshenko() {
         driver.get("http://vk.com");
         driver.findElement(By.id("index_email")).sendKeys(accountData.login() + Keys.TAB + accountData.password() + Keys.ENTER);
         WebDriverWait wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='l_msg']")));
-        driver.findElement(By.xpath("//*[@id='l_msg']")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//[@id='l_msg']")));
+        driver.findElement(By.xpath("//[@id='l_msg']")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='im_dialogs_search']")));
         driver.findElement(By.xpath("//input[@id='im_dialogs_search']")).sendKeys("Артем Ерошенко");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[@data-list-id='356736cr']")));
